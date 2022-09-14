@@ -85,7 +85,8 @@ public class Task1 {
      */
 
     public static void solutionTask1() {
-        Map<String, List<Person>> result = Arrays.stream(RAW_DATA)
+        Map<String, List<Person>> result = Arrays.stream(Optional.ofNullable(RAW_DATA)
+                .orElseThrow(NullPointerException::new))
                 .distinct()
                 .sorted((a, b) -> a.getId() - b.getId())
                 .collect(groupingBy(Person::getName));
